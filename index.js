@@ -43,8 +43,6 @@ let urlApi = "";
 
 urlApi = url_trending + key + limite + ver_imagenes + cant_imagenes;
 
-// console.log('Contenido de urlApi1: '+urlApi);
-
 document.getElementById("btn").addEventListener("click", function(){
 
     document.getElementById("root").innerHTML = "";
@@ -122,10 +120,12 @@ const getData = async () => {
 
     const respuesta = await fetch(`${urlApi}`);
     const { data } = await respuesta.json();
+    if (!respuesta.ok){
+        throw new Error("Warn", respuesta.status);
+    }
 
     cant_imagenes += 10;
-    console.log('Variable cant_imagenes_NUCLEO2:'+cant_imagenes);
-  
+//  console.log('Variable cant_imagenes_NUCLEO2:'+cant_imagenes);
     return data;
 };
 
@@ -143,8 +143,8 @@ const Nucleo = async () => {
 
 };
 
-window.addEventListener("load", Nucleo);
+// window.addEventListener("load", Nucleo);
 
-// Nucleo();
+Nucleo();
 
 
